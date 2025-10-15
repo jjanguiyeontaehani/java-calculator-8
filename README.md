@@ -62,7 +62,7 @@
   - [ ] Calculator
     - [ ] Add Numbers
 - [ ] View
-  - [ ] Get Input
+  - [X] Get Input
   - [X] Print Text
   - [ ] Print Error
 
