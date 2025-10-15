@@ -1,15 +1,13 @@
 package calculator;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 
-class ConsoleViewTest extends NsTest {
+class ConsoleViewTest {
     ConsoleView consoleViewInstance = new ConsoleView();
 
     @Test
@@ -28,10 +26,5 @@ class ConsoleViewTest extends NsTest {
 
         Assertions.assertEquals(expectedInputPrintText, actualOutputStream.toString());
         Assertions.assertEquals(testUserInputText, actualReturnText);
-    }
-
-    @Override
-    public void runMain() {
-
     }
 }
