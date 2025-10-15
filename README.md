@@ -63,7 +63,7 @@
     - [ ] Add Numbers
 - [ ] View
   - [ ] Get Input
-  - [ ] Print Text
+  - [X] Print Text
   - [ ] Print Error
 
 ---
