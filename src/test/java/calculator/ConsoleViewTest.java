@@ -30,12 +30,6 @@ class ConsoleViewTest extends NsTest {
         Assertions.assertEquals(testUserInputText, actualReturnText);
     }
 
-
-    @Test
-    void testConsoleView_printText() {
-        // todo: failed to use System.setIn, System.setOut should find replacing it
-    }
-
     @Override
     public void runMain() {
 
