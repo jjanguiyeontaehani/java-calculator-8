@@ -61,10 +61,9 @@
 - [ ] Model
   - [ ] Calculator
     - [ ] Add Numbers
-- [ ] View
+- [X] View
   - [X] Get Input
   - [X] Print Text
-  - [ ] Print Error
 
 ---
 
