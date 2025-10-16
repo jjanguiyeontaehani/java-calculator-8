@@ -59,10 +59,10 @@
 
 ## 기능 구현 목록
 
-- [ ] Config
+- [X] Config
     - [X] Default Seperator
     - [X] Custom Seperator Prefix
-    - [ ] Custom Seperator Suffix
+    - [X] Custom Seperator Suffix
 - [ ] Controller
     - [ ] Run
 - [ ] Input Parser

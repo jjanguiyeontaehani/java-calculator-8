@@ -9,6 +9,7 @@ public class CalculatorConfigTest {
     void testCalculatorConfig() {
         final String EXPECTED_DEFAULT_SEPERATOR_REGEX = ",|:";
         final String EXPECTED_CUSTOM_SEPERATOR_PREFIX = "//";
+        final String EXPECTED_CUSTOM_SEPERATOR_SUFFIX = "\n";
 
         Assertions.assertEquals(
                 EXPECTED_DEFAULT_SEPERATOR_REGEX,
@@ -16,5 +17,8 @@ public class CalculatorConfigTest {
         Assertions.assertEquals(
                 EXPECTED_CUSTOM_SEPERATOR_PREFIX,
                 CalculatorConfig.CUSTOM_SEPERATOR_PREFIX);
+        Assertions.assertEquals(
+                EXPECTED_CUSTOM_SEPERATOR_SUFFIX,
+                CalculatorConfig.CUSTOM_SEPERATOR_SUFFIX);
     }
 }
