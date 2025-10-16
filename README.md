@@ -67,7 +67,7 @@
     - [ ] Run
 - [ ] Input Parser
     - [ ] Parse String
-    - [ ] Validate Input
+    - [X] Validate Input
 - [ ] Model
     - [ ] Calculator
         - [ ] Add Numbers
