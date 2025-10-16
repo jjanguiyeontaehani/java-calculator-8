@@ -61,7 +61,7 @@
 
 - [ ] Config
     - [X] Default Seperator
-    - [ ] Custom Seperator Prefix
+    - [X] Custom Seperator Prefix
     - [ ] Custom Seperator Suffix
 - [ ] Controller
     - [ ] Run
