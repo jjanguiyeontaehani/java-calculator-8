@@ -60,10 +60,9 @@
 ## 기능 구현 목록
 
 - [ ] Config
-    - [ ] Seperator Config
-        - [X] Default Seperator
-        - [ ] Add Custom Seperator
-    - [ ] Error Message Config
+    - [X] Default Seperator
+    - [ ] Custom Seperator Prefix
+    - [ ] Custom Seperator Suffix
 - [ ] Controller
     - [ ] Run
 - [ ] Input Parser
