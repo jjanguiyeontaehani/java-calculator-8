@@ -38,10 +38,11 @@ public class InputParserTest {
 
     @Test
     void test_ParseString_Value() {
-        String validInput = "//3\n132,4:5";
+        String validInput = "//3\n132,,4:5";
         List<Float> expectedOutput = Arrays.asList(
                 1.0f,
                 2.0f,
+                0.0f,
                 4.0f,
                 5.0f
         );
