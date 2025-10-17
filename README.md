@@ -68,7 +68,7 @@
 - [ ] Input Parser
     - [ ] Parse String
     - [X] Validate Input
-    - [ ] Parse Custom Seperator
+    - [X] Parse Custom Seperator
 - [ ] Model
     - [ ] Calculator
         - [ ] Add Numbers
@@ -89,9 +89,9 @@
 4. 구분자 혹은 기타 문자가 첫 숫자 앞에 있을 시
     * [ ] 에러 처리 (IllegalArgumentException)
 5. 커스텀 구분자 사용을 명시하였으나 비었을 시
-    * [ ] 에러 처리 (IllegalArgumentException)
+    * [X] 에러 처리 (IllegalArgumentException)
 6. 커스텀 구분자 2개 이상 사용 시
-    * [ ] 에러 처리 (IllegalArgumentException)
+    * [X] 에러 처리 (IllegalArgumentException)
 7. 더할 숫자의 개수가 부족할 시
     * [ ] 에러 처리 (IllegalArgumentException)
 8. 숫자가 커스텀 구분자로 입력되었을 시
