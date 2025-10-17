@@ -69,48 +69,14 @@ public class InputParserTest {
         assertNull(result);
     }
 
-    @Test
-    void test_ParseCustomSeperator_Error_InvalidFormat() {
-        String invalidFormat = "a\n1,2";
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "a\n1,2", "//a1,2", "a//b\n1,2", "////a\n1,2", "//a\n\n1,2"
+    })
+    void test_ParseCustomSeperator_Error_InvalidFormat(String invalidFormat) {
 
         assertThrows(IllegalArgumentException.class, () -> {
             inputParser.parseCustomSeperator(invalidFormat);
-        });
-    }
-
-    @Test
-    void test_ParseCustomSeperator_Error_InvalidFormat2() {
-        String invalidFormat = "//a1,2";
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            inputParser.parseCustomSeperator(invalidFormat);
-        });
-    }
-
-    @Test
-    void test_ParseCustomSeperator_Error_InvalidFormat3() {
-        String twoCharDelimiter = "a//b\n1,2";
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            inputParser.parseCustomSeperator(twoCharDelimiter);
-        });
-    }
-
-    @Test
-    void test_ParseCustomSeperator_Error_InvalidFormat4() {
-        String twoCharDelimiter = "////a\n1,2";
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            inputParser.parseCustomSeperator(twoCharDelimiter);
-        });
-    }
-
-    @Test
-    void test_ParseCustomSeperator_Error_InvalidFormat5() {
-        String twoCharDelimiter = "//a\n\n1,2";
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            inputParser.parseCustomSeperator(twoCharDelimiter);
         });
     }
 
