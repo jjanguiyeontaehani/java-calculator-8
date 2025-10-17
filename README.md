@@ -65,8 +65,8 @@
     - [X] Custom Seperator Suffix
 - [ ] Controller
     - [ ] Run
-- [ ] Input Parser
-    - [ ] Parse String
+- [X] Input Parser
+    - [X] Parse String
     - [X] Validate Input
     - [X] Parse Custom Seperator
 - [ ] Model
@@ -80,24 +80,22 @@
 
 ## 기능 요구 사항 중 명시되지 않은 예외 처리
 
-1. 비어있거나 공백 혹은 널 문자열 입력 시
-    * [X] 에러 처리 (IllegalArgumentException)
 2. 음수 혹은 0 입력 시
-    * [ ] 에러 처리 (IllegalArgumentException)
-3. 구분자 사이 숫자가 비었거나 온전하지 않을 시
-    * [ ] 에러 처리 (IllegalArgumentException)
-4. 구분자 혹은 기타 문자가 첫 숫자 앞에 있을 시
-    * [ ] 에러 처리 (IllegalArgumentException)
+    * [X] 에러 처리 (IllegalArgumentException)
+4. 구분자가 아닌 기타 문자가 첫 숫자 앞에 있을 시
+    * [X] 에러 처리 (IllegalArgumentException)
 5. 커스텀 구분자 사용을 명시하였으나 비었을 시
     * [X] 에러 처리 (IllegalArgumentException)
 6. 커스텀 구분자 2개 이상 사용 시
     * [X] 에러 처리 (IllegalArgumentException)
-7. 더할 숫자의 개수가 부족할 시
-    * [ ] 에러 처리 (IllegalArgumentException)
+1. 비어있거나 공백 혹은 널 문자열 입력 시
+    * [X] 숫자를 입력하지 않은것으로 인식
+3. 구분자 사이 숫자가 비었을 시
+    * [X] 숫자를 입력하지 않은 것으로 인식
 8. 숫자가 커스텀 구분자로 입력되었을 시
-    * [ ] 숫자가 아닌 커스텀 구분자로 인식
+    * [X] 숫자가 아닌 커스텀 구분자로 인식
 9. .(온점, 소수점)이 커스텀 구분자로 입력되었을 시
-    * [ ] 자연수로만 간주하여 계산 진행
+    * [X] 소수점이 아닌 커스텀 구분자로 인식
 
 ## 기능 구현 전 고려 사항
 

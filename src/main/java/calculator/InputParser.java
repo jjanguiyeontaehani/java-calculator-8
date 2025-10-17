@@ -1,12 +1,61 @@
 package calculator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputParser {
-    public void validateInput(String inputString) {
-        if (inputString == null || inputString.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력은 비어있을 수 없습니다.");
+    public List<Float> parseString(String inputString) {
+        String customSeperator = parseCustomSeperator(inputString);
+
+        return parseNumbersUsingSeperator(customSeperator, inputString);
+    }
+
+    private List<Float> parseNumbersUsingSeperator(String customSeperator, String inputString) {
+        String numberString = inputString;
+        String seperatorRegex = CalculatorConfig.DEFAULT_SEPERATOR_REGEX;
+        if (customSeperator != null) {
+            numberString = inputString.split(CalculatorConfig.CUSTOM_SEPERATOR_SUFFIX)[1];
+
+            seperatorRegex += "|" + Pattern.quote(customSeperator);
         }
+
+        String[] parsedStringArray = numberString.split(seperatorRegex, -1);
+
+        return parseNumberList(parsedStringArray);
+    }
+
+    private List<Float> parseNumberList(String[] parsedNumberArray) {
+        List<Float> numbers = new ArrayList<>();
+
+        for (String numberToken : parsedNumberArray) {
+            Float numberValue = parseNumberToken(numberToken.trim());
+
+            numbers.add(numberValue);
+        }
+        return numbers;
+    }
+
+    private Float parseNumberToken(String numberToken) {
+
+        if (numberToken.isEmpty()) {
+            return (float) 0;
+        }
+
+        float numberValue;
+        try {
+            numberValue = Float.parseFloat(numberToken);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 유효하지 않은 숫자 형식이나 구분자 외의 문자가 감지되었습니다.", e);
+        }
+
+        if (numberValue <= 0) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 음수 및 0은 입력할 수 없습니다. 값: " + numberValue);
+        }
+
+        return numberValue;
     }
 
     private boolean isCustomSeperatorAttempted(String inputString) {

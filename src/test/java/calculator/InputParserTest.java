@@ -5,31 +5,50 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputParserTest {
     private final InputParser inputParser = new InputParser();
 
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "1,a,2", "a1", "1,-2", "0,1", "//ab\n1a2"
+    })
+    void test_ParseString_Error_Invalid_Format(String invalidFormat) {
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            inputParser.parseString(invalidFormat);
+        });
+    }
 
     @ParameterizedTest
-    @NullAndEmptySource
-    @ValueSource(strings = {" ", "  ", "\t", "\n"})
-    void test_ValidateInput_Error(String input) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            inputParser.validateInput(input);
+    @ValueSource(strings = {
+            "", " ", "\t", "1", "1,2", "//a\n1a2", "//3\n132", "//3\n132,4:5"
+    })
+    void test_ParseString_Pass(String validFormat) {
+
+        assertDoesNotThrow(() -> {
+            inputParser.parseString(validFormat);
         });
     }
 
     @Test
-    void test_ValidateInput_Pass() {
-        String validInput = "1,2:3";
+    void test_ParseString_Value() {
+        String validInput = "//3\n132,4:5";
+        List<Float> expectedOutput = Arrays.asList(
+                1.0f,
+                2.0f,
+                4.0f,
+                5.0f
+        );
 
-        assertDoesNotThrow(() -> {
-            inputParser.validateInput(validInput);
-        });
+        List<Float> result = inputParser.parseString(validInput);
+
+        assertEquals(expectedOutput, result);
     }
 
     @Test
