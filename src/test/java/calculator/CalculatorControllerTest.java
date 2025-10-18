@@ -40,7 +40,7 @@ public class CalculatorControllerTest {
     }
 
     @Test
-    void run_ShouldProcessValidInputAndPrintResult() {
+    void test_CalculatorController_ValueInt() {
         String expectedInputPrintText = "덧셈할 문자열을 입력해 주세요." + System.lineSeparator() +
                 "결과 : " + 6;
         String testUserInputText = "1,2:3";
@@ -53,14 +53,43 @@ public class CalculatorControllerTest {
         Assertions.assertEquals(expectedInputPrintText, actualOutputStream.toString());
     }
 
+    @Test
+    void test_CalculatorController_ValueFloat() {
+        String expectedInputPrintText = "덧셈할 문자열을 입력해 주세요." + System.lineSeparator() +
+                "결과 : " + 6.6f;
+        String testUserInputText = "1.1,2.2:3.3";
+
+        System.setIn(new ByteArrayInputStream(testUserInputText.getBytes()));
+
+        assertDoesNotThrow(controller::run);
+
+        System.setOut(System.out);
+        Assertions.assertEquals(expectedInputPrintText, actualOutputStream.toString());
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {
-            "a\n1,2", "//a1,2", "a//b\n1,2", "////a\n1,2", "//a\n\n1,2",
-            "//\n1,2", "//ab\n1,2"
+            "a\\n1,2", "//a1,2", "a//b\\n1,2", "////a\\n1,2", "//a\\n\\n1,2",
+            "//\\n1,2", "//ab\\n1,2", "0", "-1"
     })
-    void run_ShouldCatchParsingErrorAndPrintError(String testUserInputText) {
+    void test_CalculatorController_Error(String testUserInputText) {
         System.setIn(new ByteArrayInputStream(testUserInputText.getBytes()));
 
         assertThrows(IllegalArgumentException.class, controller::run);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "\n",
+            "\t",
+            "1",
+            "1,",
+            "1,,2",
+            "//0\\n10203",
+    })
+    void test_CalculatorController_Pass(String testUserInputText) {
+        System.setIn(new ByteArrayInputStream(testUserInputText.getBytes()));
+
+        assertDoesNotThrow(controller::run);
     }
 }
