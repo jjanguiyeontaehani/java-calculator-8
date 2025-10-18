@@ -15,7 +15,9 @@ public class InputParser {
         String numberString = inputString;
         String seperatorRegex = CalculatorConfig.DEFAULT_SEPERATOR_REGEX;
         if (customSeperator != null) {
-            numberString = inputString.split(CalculatorConfig.CUSTOM_SEPERATOR_SUFFIX)[1];
+            int suffixIndex = inputString.indexOf(CalculatorConfig.CUSTOM_SEPERATOR_SUFFIX) + 2;
+
+            numberString = inputString.substring(suffixIndex);
 
             seperatorRegex += "|" + Pattern.quote(customSeperator);
         }
