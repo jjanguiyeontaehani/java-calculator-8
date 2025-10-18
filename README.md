@@ -63,8 +63,8 @@
     - [X] Default Seperator
     - [X] Custom Seperator Prefix
     - [X] Custom Seperator Suffix
-- [ ] Controller
-    - [ ] Run
+- [X] Controller
+    - [X] Run
 - [X] Input Parser
     - [X] Parse String
     - [X] Validate Input
