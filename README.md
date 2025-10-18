@@ -69,9 +69,8 @@
     - [X] Parse String
     - [X] Validate Input
     - [X] Parse Custom Seperator
-- [ ] Model
-    - [ ] Calculator
-        - [ ] Add Numbers
+- [X] Model
+    - [X] Add Numbers
 - [X] View
     - [X] Get Input
     - [X] Print Text
