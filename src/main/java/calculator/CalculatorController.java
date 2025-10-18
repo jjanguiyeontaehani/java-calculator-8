@@ -24,7 +24,8 @@ public class CalculatorController {
 
         Float result = model.addNumbers(numbers);
 
-        view.printText("결과 : " + result);
+        view.printResult(result);
 
+        view.closeConsole();
     }
 }
