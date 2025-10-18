@@ -74,6 +74,7 @@
 - [X] View
     - [X] Get Input
     - [X] Print Text
+    - [X] Print Result
 
 ---
 
