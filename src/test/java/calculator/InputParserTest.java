@@ -53,19 +53,19 @@ public class InputParserTest {
     }
 
     @Test
-    void test_ParseCustomSeperator_Pass() {
+    void test_ParseCustomSeparator_Pass() {
         String validInput = "//a\n1,2";
 
-        String extractedDelimiter = inputParser.parseCustomSeperator(validInput);
+        String extractedDelimiter = inputParser.parseCustomSeparator(validInput);
 
         assertEquals("a", extractedDelimiter);
     }
 
     @Test
-    void test_ParseCustomSeperator_Return_Null() {
+    void test_ParseCustomSeparator_Return_Null() {
         String normalInput = "1,2,3";
 
-        String result = inputParser.parseCustomSeperator(normalInput);
+        String result = inputParser.parseCustomSeparator(normalInput);
 
         assertNull(result);
     }
@@ -74,28 +74,28 @@ public class InputParserTest {
     @ValueSource(strings = {
             "a\n1,2", "//a1,2", "a//b\n1,2", "////a\n1,2", "//a\n\n1,2"
     })
-    void test_ParseCustomSeperator_Error_InvalidFormat(String invalidFormat) {
+    void test_ParseCustomSeparator_Error_InvalidFormat(String invalidFormat) {
 
         assertThrows(IllegalArgumentException.class, () -> {
-            inputParser.parseCustomSeperator(invalidFormat);
+            inputParser.parseCustomSeparator(invalidFormat);
         });
     }
 
     @Test
-    void test_ParseCustomSeperator_Error_EmptySeperator() {
+    void test_ParseCustomSeparator_Error_EmptySeparator() {
         String emptyDelimiter = "//\n1,2";
 
         assertThrows(IllegalArgumentException.class, () -> {
-            inputParser.parseCustomSeperator(emptyDelimiter);
+            inputParser.parseCustomSeparator(emptyDelimiter);
         });
     }
 
     @Test
-    void test_ParseCustomSeperator_Error_TooManySeperator() {
+    void test_ParseCustomSeparator_Error_TooManySeparator() {
         String twoCharDelimiter = "//ab\n1,2";
 
         assertThrows(IllegalArgumentException.class, () -> {
-            inputParser.parseCustomSeperator(twoCharDelimiter);
+            inputParser.parseCustomSeparator(twoCharDelimiter);
         });
     }
 }

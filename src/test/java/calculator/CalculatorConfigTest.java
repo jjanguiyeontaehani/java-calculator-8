@@ -13,12 +13,12 @@ public class CalculatorConfigTest {
 
         Assertions.assertEquals(
                 EXPECTED_DEFAULT_SEPERATOR_REGEX,
-                CalculatorConfig.DEFAULT_SEPERATOR_REGEX);
+                CalculatorConfig.DEFAULT_SEPARATOR_REGEX);
         Assertions.assertEquals(
                 EXPECTED_CUSTOM_SEPERATOR_PREFIX,
-                CalculatorConfig.CUSTOM_SEPERATOR_PREFIX);
+                CalculatorConfig.CUSTOM_SEPARATOR_PREFIX);
         Assertions.assertEquals(
                 EXPECTED_CUSTOM_SEPERATOR_SUFFIX,
-                CalculatorConfig.CUSTOM_SEPERATOR_SUFFIX);
+                CalculatorConfig.CUSTOM_SEPARATOR_SUFFIX);
     }
 }

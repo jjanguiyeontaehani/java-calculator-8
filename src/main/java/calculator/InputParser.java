@@ -6,23 +6,24 @@ import java.util.regex.Pattern;
 
 public class InputParser {
     public List<Float> parseString(String inputString) {
-        String customSeperator = parseCustomSeperator(inputString);
+        String customSeparator = parseCustomSeparator(inputString);
 
-        return parseNumbersUsingSeperator(customSeperator, inputString);
+        return parseNumbersUsingSeparator(customSeparator, inputString);
     }
 
-    private List<Float> parseNumbersUsingSeperator(String customSeperator, String inputString) {
+    private List<Float> parseNumbersUsingSeparator(String customSeparator, String inputString) {
         String numberString = inputString;
-        String seperatorRegex = CalculatorConfig.DEFAULT_SEPERATOR_REGEX;
-        if (customSeperator != null) {
-            int suffixIndex = inputString.indexOf(CalculatorConfig.CUSTOM_SEPERATOR_SUFFIX) + 2;
+        String separatorRegex = CalculatorConfig.DEFAULT_SEPARATOR_REGEX;
+        if (customSeparator != null) {
+            int suffixIndex = inputString.indexOf(CalculatorConfig.CUSTOM_SEPARATOR_SUFFIX) +
+                    CalculatorConfig.CUSTOM_SEPARATOR_SUFFIX.length();
 
             numberString = inputString.substring(suffixIndex);
 
-            seperatorRegex += "|" + Pattern.quote(customSeperator);
+            separatorRegex += "|" + Pattern.quote(customSeparator);
         }
 
-        String[] parsedStringArray = numberString.split(seperatorRegex, -1);
+        String[] parsedStringArray = numberString.split(separatorRegex, -1);
 
         return parseNumberList(parsedStringArray);
     }
@@ -60,59 +61,63 @@ public class InputParser {
         return numberValue;
     }
 
-    private boolean isCustomSeperatorAttempted(String inputString) {
-        boolean hasSuffix = inputString.contains(CalculatorConfig.CUSTOM_SEPERATOR_SUFFIX);
-        boolean hasPrefix = inputString.startsWith(CalculatorConfig.CUSTOM_SEPERATOR_PREFIX);
+    private boolean isCustomSeparatorAttempted(String inputString) {
+        boolean hasSuffix = inputString.contains(CalculatorConfig.CUSTOM_SEPARATOR_SUFFIX);
+        boolean hasPrefix = inputString.startsWith(CalculatorConfig.CUSTOM_SEPARATOR_PREFIX);
 
         return hasPrefix || hasSuffix;
     }
 
-    public String parseCustomSeperator(String inputString) {
-        if (isCustomSeperatorAttempted(inputString)) {
-            validateSeperatorFormat(inputString);
+    public String parseCustomSeparator(String inputString) {
+        if (isCustomSeparatorAttempted(inputString)) {
+            validateSeparatorFormat(inputString);
 
-            int prefixLen = CalculatorConfig.CUSTOM_SEPERATOR_PREFIX.length();
-            int suffixIndex = inputString.indexOf(CalculatorConfig.CUSTOM_SEPERATOR_SUFFIX);
+            int prefixLen = CalculatorConfig.CUSTOM_SEPARATOR_PREFIX.length();
+            int suffixIndex = inputString.indexOf(CalculatorConfig.CUSTOM_SEPARATOR_SUFFIX);
 
-            String customSeperator = inputString.substring(prefixLen, suffixIndex);
+            String customSeparator = inputString.substring(prefixLen, suffixIndex);
 
-            validateCustomSeperatorContent(customSeperator);
+            validateCustomSeparatorContent(customSeparator);
 
-            return customSeperator;
+            return customSeparator;
         }
         return null;
     }
 
-    private void validateSeperatorOccurrence(String inputString) {
-        if (inputString.split(Pattern.quote(CalculatorConfig.CUSTOM_SEPERATOR_PREFIX)).length > 2) {
-            throw new IllegalArgumentException("[ERROR] 커스텀 구분자 사용 시 '//' 은 1번만 사용되어야 합니다.");
+    private void validateSeparatorOccurrence(String inputString) {
+        if (inputString.split(Pattern.quote(CalculatorConfig.CUSTOM_SEPARATOR_PREFIX)).length > 2) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 커스텀 구분자 사용 시 " + CalculatorConfig.CUSTOM_SEPARATOR_PREFIX + " 은 1번만 사용되어야 합니다.");
         }
 
-        if (inputString.split(Pattern.quote(CalculatorConfig.CUSTOM_SEPERATOR_SUFFIX)).length > 2) {
-            throw new IllegalArgumentException("[ERROR] 커스텀 구분자 사용 시 '\\n' 은 1번만 사용되어야 합니다.");
+        if (inputString.split(Pattern.quote(CalculatorConfig.CUSTOM_SEPARATOR_SUFFIX)).length > 2) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 커스텀 구분자 사용 시 " + CalculatorConfig.CUSTOM_SEPARATOR_SUFFIX + " 은 1번만 사용되어야 합니다.");
         }
     }
 
-    private void validateSeperatorFormat(String inputString) {
-        if (!inputString.startsWith(CalculatorConfig.CUSTOM_SEPERATOR_PREFIX)) {
+    private void validateSeparatorFormat(String inputString) {
+        if (!inputString.startsWith(CalculatorConfig.CUSTOM_SEPARATOR_PREFIX)) {
             throw new IllegalArgumentException(
-                    "[ERROR] 커스텀 구분자 사용 시 '//'가 문자열 가장 앞에 입력되어야 합니다.");
+                    "[ERROR] 커스텀 구분자 사용 시 " + CalculatorConfig.CUSTOM_SEPARATOR_PREFIX +
+                            "가 문자열 가장 앞에 입력되어야 합니다.");
         }
 
-        if (!inputString.contains(CalculatorConfig.CUSTOM_SEPERATOR_SUFFIX)) {
+        if (!inputString.contains(CalculatorConfig.CUSTOM_SEPARATOR_SUFFIX)) {
             throw new IllegalArgumentException(
-                    "[ERROR] 커스텀 구분자 사용 시 '\\n'가 구분자 뒤에 입력되어야 합니다.");
+                    "[ERROR] 커스텀 구분자 사용 시 " + CalculatorConfig.CUSTOM_SEPARATOR_SUFFIX +
+                            "가 구분자 뒤에 입력되어야 합니다.");
         }
 
-        validateSeperatorOccurrence(inputString);
+        validateSeparatorOccurrence(inputString);
     }
 
-    private void validateCustomSeperatorContent(String customSeperator) {
-        if (customSeperator.isEmpty()) {
+    private void validateCustomSeparatorContent(String customSeparator) {
+        if (customSeparator.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 커스텀 구분자는 비어있을 수 없습니다.");
         }
 
-        if (customSeperator.length() > 1) {
+        if (customSeparator.length() > 1) {
             throw new IllegalArgumentException("[ERROR] 커스텀 구분자는 1개만 사용 가능합니다.");
         }
     }
